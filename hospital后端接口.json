@@ -1,0 +1,3559 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "医院信息管理系统 API 文档",
+    "description": "基于 Spring Boot 3.x 的医院信息管理系统接口文档",
+    "contact": {
+      "name": "Inspur",
+      "email": "support@inspur.com"
+    },
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "门诊患者库管理",
+      "description": "门诊患者记录相关接口"
+    },
+    {
+      "name": "药品缴费管理",
+      "description": "药品缴费相关接口"
+    },
+    {
+      "name": "项目划价管理",
+      "description": "项目收费明细相关接口"
+    },
+    {
+      "name": "项目检查管理",
+      "description": "项目检查相关接口"
+    },
+    {
+      "name": "项目缴费管理",
+      "description": "项目缴费相关接口"
+    },
+    {
+      "name": "菜单与登录管理",
+      "description": "菜单与登录相关接口"
+    }
+  ],
+  "paths": {
+    "/project-payment/pay/{perid}": {
+      "put": {
+        "tags": [
+          "项目缴费管理"
+        ],
+        "summary": "项目缴费，批量修改项目状态",
+        "operationId": "updxiang",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-check/add-result": {
+      "put": {
+        "tags": [
+          "项目检查管理"
+        ],
+        "summary": "添加项目检查结果",
+        "operationId": "addjie",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cashier": {
+                    "type": "integer",
+                    "description": "收费ID",
+                    "format": "int32"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "durgname": {
+                    "type": "string",
+                    "description": "项目名称"
+                  },
+                  "durgnum": {
+                    "type": "integer",
+                    "description": "项目数量",
+                    "format": "int32"
+                  },
+                  "repiceprice": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "repicetotal": {
+                    "type": "number",
+                    "description": "小计",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "ostate": {
+                    "type": "integer",
+                    "description": "项目状态",
+                    "format": "int32"
+                  },
+                  "jie": {
+                    "type": "string",
+                    "description": "检查结果"
+                  },
+                  "ctime": {
+                    "type": "string",
+                    "description": "收费时间"
+                  },
+                  "mstate": {
+                    "type": "integer",
+                    "description": "药品状态",
+                    "format": "int32"
+                  }
+                },
+                "description": "项目检查明细实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-charge/update": {
+      "put": {
+        "tags": [
+          "项目划价管理"
+        ],
+        "summary": "更新项目收费明细",
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cashier": {
+                    "type": "integer",
+                    "description": "收费ID",
+                    "format": "int32"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "durgname": {
+                    "type": "string",
+                    "description": "项目名称"
+                  },
+                  "durgnum": {
+                    "type": "integer",
+                    "description": "项目数量",
+                    "format": "int32"
+                  },
+                  "repiceprice": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "repicetotal": {
+                    "type": "number",
+                    "description": "小计",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "ostate": {
+                    "type": "integer",
+                    "description": "项目状态",
+                    "format": "int32"
+                  },
+                  "jie": {
+                    "type": "string",
+                    "description": "检查结果"
+                  },
+                  "ctime": {
+                    "type": "string",
+                    "description": "收费时间"
+                  },
+                  "mstate": {
+                    "type": "integer",
+                    "description": "药品状态",
+                    "format": "int32"
+                  }
+                },
+                "description": "项目收费明细实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/update": {
+      "put": {
+        "tags": [
+          "处方划价管理"
+        ],
+        "summary": "修改处方药品",
+        "operationId": "updatePrescription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cashier": {
+                    "type": "integer",
+                    "description": "处方ID",
+                    "format": "int32"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "drugName": {
+                    "type": "string",
+                    "description": "药品名称"
+                  },
+                  "drugNum": {
+                    "type": "integer",
+                    "description": "药品数量",
+                    "format": "int32"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "total": {
+                    "type": "number",
+                    "description": "小计",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "ostate": {
+                    "type": "integer",
+                    "description": "项目状态",
+                    "format": "int32"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "description": "备注"
+                  },
+                  "mstate": {
+                    "type": "integer",
+                    "description": "药品状态",
+                    "format": "int32"
+                  }
+                },
+                "description": "处方明细实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/outpatient-records/{reportId}/state/{state}": {
+      "put": {
+        "tags": [
+          "门诊患者库管理"
+        ],
+        "summary": "更新门诊患者状态",
+        "operationId": "updateState",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drug-charge/pay/{perid}": {
+      "put": {
+        "tags": [
+          "药品缴费管理"
+        ],
+        "summary": "药品缴费，批量修改药品状态",
+        "operationId": "updDrug",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sel/login": {
+      "post": {
+        "tags": [
+          "菜单与登录管理"
+        ],
+        "summary": "登录接口",
+        "operationId": "login",
+        "parameters": [
+          {
+            "name": "loginname",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "userid": {
+                          "type": "integer",
+                          "description": "用户ID",
+                          "format": "int32"
+                        },
+                        "loginname": {
+                          "type": "string",
+                          "description": "登录名"
+                        },
+                        "identity": {
+                          "type": "string",
+                          "description": "身份证号"
+                        },
+                        "realname": {
+                          "type": "string",
+                          "description": "真实姓名"
+                        },
+                        "sex": {
+                          "type": "integer",
+                          "description": "性别",
+                          "format": "int32"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "地址"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "电话"
+                        },
+                        "pwd": {
+                          "type": "string",
+                          "description": "密码"
+                        },
+                        "position": {
+                          "type": "string",
+                          "description": "职位"
+                        },
+                        "type": {
+                          "type": "integer",
+                          "description": "类型",
+                          "format": "int32"
+                        },
+                        "available": {
+                          "type": "integer",
+                          "description": "可用状态",
+                          "format": "int32"
+                        },
+                        "salt": {
+                          "type": "string",
+                          "description": "加盐"
+                        }
+                      },
+                      "description": "用户实体"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/add": {
+      "post": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "添加挂号",
+        "operationId": "addRegister",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "registerId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "userName": {
+                    "type": "string",
+                    "description": "患者姓名"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "description": "年龄",
+                    "format": "int32"
+                  },
+                  "sex": {
+                    "type": "string",
+                    "description": "性别"
+                  },
+                  "diagnose": {
+                    "type": "string",
+                    "description": "诊断"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "地址"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "电话"
+                  },
+                  "idcard": {
+                    "type": "string",
+                    "description": "身份证号"
+                  },
+                  "registerDate": {
+                    "type": "string",
+                    "description": "挂号日期",
+                    "format": "date-time"
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description": "操作员"
+                  },
+                  "money": {
+                    "type": "number",
+                    "description": "金额",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "departmentId": {
+                    "type": "integer",
+                    "description": "科室ID",
+                    "format": "int32"
+                  },
+                  "doctorId": {
+                    "type": "integer",
+                    "description": "医生ID",
+                    "format": "int32"
+                  },
+                  "bedId": {
+                    "type": "integer",
+                    "description": "床位ID",
+                    "format": "int32"
+                  },
+                  "department": {
+                    "type": "string",
+                    "description": "科室名称"
+                  },
+                  "doctorName": {
+                    "type": "string",
+                    "description": "医生姓名"
+                  },
+                  "bedName": {
+                    "type": "string",
+                    "description": "床位名称"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "出院日期",
+                    "format": "date-time"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "prices": {
+                    "type": "number",
+                    "description": "总价",
+                    "format": "double"
+                  },
+                  "discount": {
+                    "type": "string",
+                    "description": "折扣"
+                  },
+                  "zhuan": {
+                    "type": "string",
+                    "description": "转院时间",
+                    "format": "date-time"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "关联reportId",
+                    "format": "int32"
+                  },
+                  "day": {
+                    "type": "integer",
+                    "description": "天数",
+                    "format": "int32"
+                  }
+                },
+                "description": "挂号信息实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-charge/add": {
+      "post": {
+        "tags": [
+          "项目划价管理"
+        ],
+        "summary": "新增项目收费明细",
+        "operationId": "add",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cashier": {
+                    "type": "integer",
+                    "description": "收费ID",
+                    "format": "int32"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "durgname": {
+                    "type": "string",
+                    "description": "项目名称"
+                  },
+                  "durgnum": {
+                    "type": "integer",
+                    "description": "项目数量",
+                    "format": "int32"
+                  },
+                  "repiceprice": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "repicetotal": {
+                    "type": "number",
+                    "description": "小计",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "ostate": {
+                    "type": "integer",
+                    "description": "项目状态",
+                    "format": "int32"
+                  },
+                  "jie": {
+                    "type": "string",
+                    "description": "检查结果"
+                  },
+                  "ctime": {
+                    "type": "string",
+                    "description": "收费时间"
+                  },
+                  "mstate": {
+                    "type": "integer",
+                    "description": "药品状态",
+                    "format": "int32"
+                  }
+                },
+                "description": "项目收费明细实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/add": {
+      "post": {
+        "tags": [
+          "处方划价管理"
+        ],
+        "summary": "添加处方药品",
+        "operationId": "addPrescription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cashier": {
+                    "type": "integer",
+                    "description": "处方ID",
+                    "format": "int32"
+                  },
+                  "reportId": {
+                    "type": "integer",
+                    "description": "挂号ID",
+                    "format": "int32"
+                  },
+                  "drugName": {
+                    "type": "string",
+                    "description": "药品名称"
+                  },
+                  "drugNum": {
+                    "type": "integer",
+                    "description": "药品数量",
+                    "format": "int32"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "单价",
+                    "format": "double"
+                  },
+                  "total": {
+                    "type": "number",
+                    "description": "小计",
+                    "format": "double"
+                  },
+                  "state": {
+                    "type": "integer",
+                    "description": "状态",
+                    "format": "int32"
+                  },
+                  "ostate": {
+                    "type": "integer",
+                    "description": "项目状态",
+                    "format": "int32"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "description": "备注"
+                  },
+                  "mstate": {
+                    "type": "integer",
+                    "description": "药品状态",
+                    "format": "int32"
+                  }
+                },
+                "description": "处方明细实体"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/registeredTypes": {
+      "get": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "查询所有挂号类型",
+        "operationId": "listRegisteredTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "registerId": {
+                        "type": "integer",
+                        "description": "挂号ID",
+                        "format": "int32"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "患者姓名"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "description": "年龄",
+                        "format": "int32"
+                      },
+                      "sex": {
+                        "type": "string",
+                        "description": "性别"
+                      },
+                      "diagnose": {
+                        "type": "string",
+                        "description": "诊断"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "地址"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "电话"
+                      },
+                      "idcard": {
+                        "type": "string",
+                        "description": "身份证号"
+                      },
+                      "registerDate": {
+                        "type": "string",
+                        "description": "挂号日期",
+                        "format": "date-time"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "操作员"
+                      },
+                      "money": {
+                        "type": "number",
+                        "description": "金额",
+                        "format": "double"
+                      },
+                      "state": {
+                        "type": "integer",
+                        "description": "状态",
+                        "format": "int32"
+                      },
+                      "departmentId": {
+                        "type": "integer",
+                        "description": "科室ID",
+                        "format": "int32"
+                      },
+                      "doctorId": {
+                        "type": "integer",
+                        "description": "医生ID",
+                        "format": "int32"
+                      },
+                      "bedId": {
+                        "type": "integer",
+                        "description": "床位ID",
+                        "format": "int32"
+                      },
+                      "department": {
+                        "type": "string",
+                        "description": "科室名称"
+                      },
+                      "doctorName": {
+                        "type": "string",
+                        "description": "医生姓名"
+                      },
+                      "bedName": {
+                        "type": "string",
+                        "description": "床位名称"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "出院日期",
+                        "format": "date-time"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "单价",
+                        "format": "double"
+                      },
+                      "prices": {
+                        "type": "number",
+                        "description": "总价",
+                        "format": "double"
+                      },
+                      "discount": {
+                        "type": "string",
+                        "description": "折扣"
+                      },
+                      "zhuan": {
+                        "type": "string",
+                        "description": "转院时间",
+                        "format": "date-time"
+                      },
+                      "reportId": {
+                        "type": "integer",
+                        "description": "关联reportId",
+                        "format": "int32"
+                      },
+                      "day": {
+                        "type": "integer",
+                        "description": "天数",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "挂号信息实体"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/price": {
+      "get": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "根据挂号类型查询价格",
+        "operationId": "getPriceByRegisteredType",
+        "parameters": [
+          {
+            "name": "registeredId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/list": {
+      "get": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "查询挂号信息",
+        "operationId": "listRegister",
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "registerId": {
+                        "type": "integer",
+                        "description": "挂号ID",
+                        "format": "int32"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "患者姓名"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "description": "年龄",
+                        "format": "int32"
+                      },
+                      "sex": {
+                        "type": "string",
+                        "description": "性别"
+                      },
+                      "diagnose": {
+                        "type": "string",
+                        "description": "诊断"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "地址"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "电话"
+                      },
+                      "idcard": {
+                        "type": "string",
+                        "description": "身份证号"
+                      },
+                      "registerDate": {
+                        "type": "string",
+                        "description": "挂号日期",
+                        "format": "date-time"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "操作员"
+                      },
+                      "money": {
+                        "type": "number",
+                        "description": "金额",
+                        "format": "double"
+                      },
+                      "state": {
+                        "type": "integer",
+                        "description": "状态",
+                        "format": "int32"
+                      },
+                      "departmentId": {
+                        "type": "integer",
+                        "description": "科室ID",
+                        "format": "int32"
+                      },
+                      "doctorId": {
+                        "type": "integer",
+                        "description": "医生ID",
+                        "format": "int32"
+                      },
+                      "bedId": {
+                        "type": "integer",
+                        "description": "床位ID",
+                        "format": "int32"
+                      },
+                      "department": {
+                        "type": "string",
+                        "description": "科室名称"
+                      },
+                      "doctorName": {
+                        "type": "string",
+                        "description": "医生姓名"
+                      },
+                      "bedName": {
+                        "type": "string",
+                        "description": "床位名称"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "出院日期",
+                        "format": "date-time"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "单价",
+                        "format": "double"
+                      },
+                      "prices": {
+                        "type": "number",
+                        "description": "总价",
+                        "format": "double"
+                      },
+                      "discount": {
+                        "type": "string",
+                        "description": "折扣"
+                      },
+                      "zhuan": {
+                        "type": "string",
+                        "description": "转院时间",
+                        "format": "date-time"
+                      },
+                      "reportId": {
+                        "type": "integer",
+                        "description": "关联reportId",
+                        "format": "int32"
+                      },
+                      "day": {
+                        "type": "integer",
+                        "description": "天数",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "挂号信息实体"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/doctors": {
+      "get": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "查询所有医生",
+        "operationId": "listDoctors",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "registerId": {
+                        "type": "integer",
+                        "description": "挂号ID",
+                        "format": "int32"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "患者姓名"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "description": "年龄",
+                        "format": "int32"
+                      },
+                      "sex": {
+                        "type": "string",
+                        "description": "性别"
+                      },
+                      "diagnose": {
+                        "type": "string",
+                        "description": "诊断"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "地址"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "电话"
+                      },
+                      "idcard": {
+                        "type": "string",
+                        "description": "身份证号"
+                      },
+                      "registerDate": {
+                        "type": "string",
+                        "description": "挂号日期",
+                        "format": "date-time"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "操作员"
+                      },
+                      "money": {
+                        "type": "number",
+                        "description": "金额",
+                        "format": "double"
+                      },
+                      "state": {
+                        "type": "integer",
+                        "description": "状态",
+                        "format": "int32"
+                      },
+                      "departmentId": {
+                        "type": "integer",
+                        "description": "科室ID",
+                        "format": "int32"
+                      },
+                      "doctorId": {
+                        "type": "integer",
+                        "description": "医生ID",
+                        "format": "int32"
+                      },
+                      "bedId": {
+                        "type": "integer",
+                        "description": "床位ID",
+                        "format": "int32"
+                      },
+                      "department": {
+                        "type": "string",
+                        "description": "科室名称"
+                      },
+                      "doctorName": {
+                        "type": "string",
+                        "description": "医生姓名"
+                      },
+                      "bedName": {
+                        "type": "string",
+                        "description": "床位名称"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "出院日期",
+                        "format": "date-time"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "单价",
+                        "format": "double"
+                      },
+                      "prices": {
+                        "type": "number",
+                        "description": "总价",
+                        "format": "double"
+                      },
+                      "discount": {
+                        "type": "string",
+                        "description": "折扣"
+                      },
+                      "zhuan": {
+                        "type": "string",
+                        "description": "转院时间",
+                        "format": "date-time"
+                      },
+                      "reportId": {
+                        "type": "integer",
+                        "description": "关联reportId",
+                        "format": "int32"
+                      },
+                      "day": {
+                        "type": "integer",
+                        "description": "天数",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "挂号信息实体"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/departments": {
+      "get": {
+        "tags": [
+          "用户挂号管理"
+        ],
+        "summary": "查询所有科室",
+        "operationId": "listDepartments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "registerId": {
+                        "type": "integer",
+                        "description": "挂号ID",
+                        "format": "int32"
+                      },
+                      "userName": {
+                        "type": "string",
+                        "description": "患者姓名"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "description": "年龄",
+                        "format": "int32"
+                      },
+                      "sex": {
+                        "type": "string",
+                        "description": "性别"
+                      },
+                      "diagnose": {
+                        "type": "string",
+                        "description": "诊断"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "地址"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "电话"
+                      },
+                      "idcard": {
+                        "type": "string",
+                        "description": "身份证号"
+                      },
+                      "registerDate": {
+                        "type": "string",
+                        "description": "挂号日期",
+                        "format": "date-time"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "操作员"
+                      },
+                      "money": {
+                        "type": "number",
+                        "description": "金额",
+                        "format": "double"
+                      },
+                      "state": {
+                        "type": "integer",
+                        "description": "状态",
+                        "format": "int32"
+                      },
+                      "departmentId": {
+                        "type": "integer",
+                        "description": "科室ID",
+                        "format": "int32"
+                      },
+                      "doctorId": {
+                        "type": "integer",
+                        "description": "医生ID",
+                        "format": "int32"
+                      },
+                      "bedId": {
+                        "type": "integer",
+                        "description": "床位ID",
+                        "format": "int32"
+                      },
+                      "department": {
+                        "type": "string",
+                        "description": "科室名称"
+                      },
+                      "doctorName": {
+                        "type": "string",
+                        "description": "医生姓名"
+                      },
+                      "bedName": {
+                        "type": "string",
+                        "description": "床位名称"
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "出院日期",
+                        "format": "date-time"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "单价",
+                        "format": "double"
+                      },
+                      "prices": {
+                        "type": "number",
+                        "description": "总价",
+                        "format": "double"
+                      },
+                      "discount": {
+                        "type": "string",
+                        "description": "折扣"
+                      },
+                      "zhuan": {
+                        "type": "string",
+                        "description": "转院时间",
+                        "format": "date-time"
+                      },
+                      "reportId": {
+                        "type": "integer",
+                        "description": "关联reportId",
+                        "format": "int32"
+                      },
+                      "day": {
+                        "type": "integer",
+                        "description": "天数",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "挂号信息实体"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-payment/list/{perid}": {
+      "get": {
+        "tags": [
+          "项目缴费管理"
+        ],
+        "summary": "查询患者所有可缴费项目",
+        "operationId": "selxiang",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cashier": {
+                            "type": "integer",
+                            "description": "收费ID",
+                            "format": "int32"
+                          },
+                          "reportId": {
+                            "type": "integer",
+                            "description": "挂号ID",
+                            "format": "int32"
+                          },
+                          "durgname": {
+                            "type": "string",
+                            "description": "项目名称"
+                          },
+                          "durgnum": {
+                            "type": "integer",
+                            "description": "项目数量",
+                            "format": "int32"
+                          },
+                          "repiceprice": {
+                            "type": "number",
+                            "description": "单价",
+                            "format": "double"
+                          },
+                          "repicetotal": {
+                            "type": "number",
+                            "description": "小计",
+                            "format": "double"
+                          },
+                          "state": {
+                            "type": "integer",
+                            "description": "状态",
+                            "format": "int32"
+                          },
+                          "ostate": {
+                            "type": "integer",
+                            "description": "项目状态",
+                            "format": "int32"
+                          },
+                          "jie": {
+                            "type": "string",
+                            "description": "检查结果"
+                          },
+                          "ctime": {
+                            "type": "string",
+                            "description": "收费时间"
+                          },
+                          "mstate": {
+                            "type": "integer",
+                            "description": "药品状态",
+                            "format": "int32"
+                          }
+                        },
+                        "description": "项目缴费明细实体"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-payment/has-pay/{perid}": {
+      "get": {
+        "tags": [
+          "项目缴费管理"
+        ],
+        "summary": "查询该患者是否有可缴费项目",
+        "operationId": "selshoux",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-check/list/{perid}": {
+      "get": {
+        "tags": [
+          "项目检查管理"
+        ],
+        "summary": "查询患者所有需检查项目",
+        "operationId": "selcha",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cashier": {
+                            "type": "integer",
+                            "description": "收费ID",
+                            "format": "int32"
+                          },
+                          "reportId": {
+                            "type": "integer",
+                            "description": "挂号ID",
+                            "format": "int32"
+                          },
+                          "durgname": {
+                            "type": "string",
+                            "description": "项目名称"
+                          },
+                          "durgnum": {
+                            "type": "integer",
+                            "description": "项目数量",
+                            "format": "int32"
+                          },
+                          "repiceprice": {
+                            "type": "number",
+                            "description": "单价",
+                            "format": "double"
+                          },
+                          "repicetotal": {
+                            "type": "number",
+                            "description": "小计",
+                            "format": "double"
+                          },
+                          "state": {
+                            "type": "integer",
+                            "description": "状态",
+                            "format": "int32"
+                          },
+                          "ostate": {
+                            "type": "integer",
+                            "description": "项目状态",
+                            "format": "int32"
+                          },
+                          "jie": {
+                            "type": "string",
+                            "description": "检查结果"
+                          },
+                          "ctime": {
+                            "type": "string",
+                            "description": "收费时间"
+                          },
+                          "mstate": {
+                            "type": "integer",
+                            "description": "药品状态",
+                            "format": "int32"
+                          }
+                        },
+                        "description": "项目检查明细实体"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-charge/list/{reportId}": {
+      "get": {
+        "tags": [
+          "项目划价管理"
+        ],
+        "summary": "根据挂号ID查询项目收费明细",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cashier": {
+                            "type": "integer",
+                            "description": "收费ID",
+                            "format": "int32"
+                          },
+                          "reportId": {
+                            "type": "integer",
+                            "description": "挂号ID",
+                            "format": "int32"
+                          },
+                          "durgname": {
+                            "type": "string",
+                            "description": "项目名称"
+                          },
+                          "durgnum": {
+                            "type": "integer",
+                            "description": "项目数量",
+                            "format": "int32"
+                          },
+                          "repiceprice": {
+                            "type": "number",
+                            "description": "单价",
+                            "format": "double"
+                          },
+                          "repicetotal": {
+                            "type": "number",
+                            "description": "小计",
+                            "format": "double"
+                          },
+                          "state": {
+                            "type": "integer",
+                            "description": "状态",
+                            "format": "int32"
+                          },
+                          "ostate": {
+                            "type": "integer",
+                            "description": "项目状态",
+                            "format": "int32"
+                          },
+                          "jie": {
+                            "type": "string",
+                            "description": "检查结果"
+                          },
+                          "ctime": {
+                            "type": "string",
+                            "description": "收费时间"
+                          },
+                          "mstate": {
+                            "type": "integer",
+                            "description": "药品状态",
+                            "format": "int32"
+                          }
+                        },
+                        "description": "项目收费明细实体"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/total": {
+      "get": {
+        "tags": [
+          "处方划价管理"
+        ],
+        "summary": "查询处方总价",
+        "operationId": "getTotalByReportId",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/list": {
+      "get": {
+        "tags": [
+          "处方划价管理"
+        ],
+        "summary": "查询某患者所有处方药品",
+        "operationId": "listByReportId",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "cashier": {
+                        "type": "integer",
+                        "description": "处方ID",
+                        "format": "int32"
+                      },
+                      "reportId": {
+                        "type": "integer",
+                        "description": "挂号ID",
+                        "format": "int32"
+                      },
+                      "drugName": {
+                        "type": "string",
+                        "description": "药品名称"
+                      },
+                      "drugNum": {
+                        "type": "integer",
+                        "description": "药品数量",
+                        "format": "int32"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "单价",
+                        "format": "double"
+                      },
+                      "total": {
+                        "type": "number",
+                        "description": "小计",
+                        "format": "double"
+                      },
+                      "state": {
+                        "type": "integer",
+                        "description": "状态",
+                        "format": "int32"
+                      },
+                      "ostate": {
+                        "type": "integer",
+                        "description": "项目状态",
+                        "format": "int32"
+                      },
+                      "remark": {
+                        "type": "string",
+                        "description": "备注"
+                      },
+                      "mstate": {
+                        "type": "integer",
+                        "description": "药品状态",
+                        "format": "int32"
+                      }
+                    },
+                    "description": "处方明细实体"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/outpatient-records": {
+      "get": {
+        "tags": [
+          "门诊患者库管理"
+        ],
+        "summary": "查询所有门诊患者记录",
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "reportId": {
+                            "type": "integer",
+                            "description": "挂号ID",
+                            "format": "int32"
+                          },
+                          "reportName": {
+                            "type": "string",
+                            "description": "患者姓名"
+                          },
+                          "sex": {
+                            "type": "string",
+                            "description": "性别"
+                          },
+                          "age": {
+                            "type": "integer",
+                            "description": "年龄",
+                            "format": "int32"
+                          },
+                          "price": {
+                            "type": "number",
+                            "description": "价格",
+                            "format": "double"
+                          },
+                          "time": {
+                            "type": "string",
+                            "description": "就诊时间",
+                            "format": "date-time"
+                          },
+                          "users": {
+                            "type": "string",
+                            "description": "操作员"
+                          },
+                          "state": {
+                            "type": "integer",
+                            "description": "状态",
+                            "format": "int32"
+                          },
+                          "departmentId": {
+                            "type": "integer",
+                            "description": "科室ID",
+                            "format": "int32"
+                          },
+                          "doctorId": {
+                            "type": "integer",
+                            "description": "医生ID",
+                            "format": "int32"
+                          },
+                          "registeredTypeId": {
+                            "type": "integer",
+                            "description": "挂号类型ID",
+                            "format": "int32"
+                          },
+                          "department": {
+                            "type": "string",
+                            "description": "科室名称"
+                          },
+                          "doctorName": {
+                            "type": "string",
+                            "description": "医生姓名"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "挂号类型"
+                          },
+                          "carId": {
+                            "type": "string",
+                            "description": "身份证号"
+                          },
+                          "phone": {
+                            "type": "string",
+                            "description": "电话"
+                          },
+                          "transferInfo": {
+                            "type": "string",
+                            "description": "转诊信息"
+                          }
+                        },
+                        "description": "门诊患者记录"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/outpatient-records/{reportId}": {
+      "get": {
+        "tags": [
+          "门诊患者库管理"
+        ],
+        "summary": "根据ID查询门诊患者记录",
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "reportId": {
+                          "type": "integer",
+                          "description": "挂号ID",
+                          "format": "int32"
+                        },
+                        "reportName": {
+                          "type": "string",
+                          "description": "患者姓名"
+                        },
+                        "sex": {
+                          "type": "string",
+                          "description": "性别"
+                        },
+                        "age": {
+                          "type": "integer",
+                          "description": "年龄",
+                          "format": "int32"
+                        },
+                        "price": {
+                          "type": "number",
+                          "description": "价格",
+                          "format": "double"
+                        },
+                        "time": {
+                          "type": "string",
+                          "description": "就诊时间",
+                          "format": "date-time"
+                        },
+                        "users": {
+                          "type": "string",
+                          "description": "操作员"
+                        },
+                        "state": {
+                          "type": "integer",
+                          "description": "状态",
+                          "format": "int32"
+                        },
+                        "departmentId": {
+                          "type": "integer",
+                          "description": "科室ID",
+                          "format": "int32"
+                        },
+                        "doctorId": {
+                          "type": "integer",
+                          "description": "医生ID",
+                          "format": "int32"
+                        },
+                        "registeredTypeId": {
+                          "type": "integer",
+                          "description": "挂号类型ID",
+                          "format": "int32"
+                        },
+                        "department": {
+                          "type": "string",
+                          "description": "科室名称"
+                        },
+                        "doctorName": {
+                          "type": "string",
+                          "description": "医生姓名"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "挂号类型"
+                        },
+                        "carId": {
+                          "type": "string",
+                          "description": "身份证号"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "电话"
+                        },
+                        "transferInfo": {
+                          "type": "string",
+                          "description": "转诊信息"
+                        }
+                      },
+                      "description": "门诊患者记录"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drug-charge/list/{perid}": {
+      "get": {
+        "tags": [
+          "药品缴费管理"
+        ],
+        "summary": "查询患者所有可缴费药品",
+        "operationId": "selDrug",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cashier": {
+                            "type": "integer",
+                            "description": "收费ID",
+                            "format": "int32"
+                          },
+                          "reportId": {
+                            "type": "integer",
+                            "description": "挂号ID",
+                            "format": "int32"
+                          },
+                          "durgname": {
+                            "type": "string",
+                            "description": "药品名称"
+                          },
+                          "durgnum": {
+                            "type": "integer",
+                            "description": "药品数量",
+                            "format": "int32"
+                          },
+                          "repiceprice": {
+                            "type": "number",
+                            "description": "单价",
+                            "format": "double"
+                          },
+                          "repicetotal": {
+                            "type": "number",
+                            "description": "小计",
+                            "format": "double"
+                          },
+                          "state": {
+                            "type": "integer",
+                            "description": "状态",
+                            "format": "int32"
+                          },
+                          "ostate": {
+                            "type": "integer",
+                            "description": "项目状态",
+                            "format": "int32"
+                          },
+                          "jie": {
+                            "type": "string",
+                            "description": "检查结果"
+                          },
+                          "ctime": {
+                            "type": "string",
+                            "description": "收费时间"
+                          },
+                          "mstate": {
+                            "type": "integer",
+                            "description": "药品缴费状态",
+                            "format": "int32"
+                          }
+                        },
+                        "description": "药品缴费明细实体"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drug-charge/has-pay/{perid}": {
+      "get": {
+        "tags": [
+          "药品缴费管理"
+        ],
+        "summary": "查询该患者是否有可缴费药品",
+        "operationId": "selDrugPay",
+        "parameters": [
+          {
+            "name": "perid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project-charge/delete/{cashier}": {
+      "delete": {
+        "tags": [
+          "项目划价管理"
+        ],
+        "summary": "删除项目收费明细",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "cashier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/delete": {
+      "delete": {
+        "tags": [
+          "处方划价管理"
+        ],
+        "summary": "删除处方药品",
+        "operationId": "deletePrescription",
+        "parameters": [
+          {
+            "name": "cashier",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResultInteger": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ProjectCheck": {
+        "type": "object",
+        "properties": {
+          "cashier": {
+            "type": "integer",
+            "description": "收费ID",
+            "format": "int32"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "durgname": {
+            "type": "string",
+            "description": "项目名称"
+          },
+          "durgnum": {
+            "type": "integer",
+            "description": "项目数量",
+            "format": "int32"
+          },
+          "repiceprice": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "repicetotal": {
+            "type": "number",
+            "description": "小计",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "ostate": {
+            "type": "integer",
+            "description": "项目状态",
+            "format": "int32"
+          },
+          "jie": {
+            "type": "string",
+            "description": "检查结果"
+          },
+          "ctime": {
+            "type": "string",
+            "description": "收费时间"
+          },
+          "mstate": {
+            "type": "integer",
+            "description": "药品状态",
+            "format": "int32"
+          }
+        },
+        "description": "项目检查明细实体"
+      },
+      "ProjectCharge": {
+        "type": "object",
+        "properties": {
+          "cashier": {
+            "type": "integer",
+            "description": "收费ID",
+            "format": "int32"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "durgname": {
+            "type": "string",
+            "description": "项目名称"
+          },
+          "durgnum": {
+            "type": "integer",
+            "description": "项目数量",
+            "format": "int32"
+          },
+          "repiceprice": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "repicetotal": {
+            "type": "number",
+            "description": "小计",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "ostate": {
+            "type": "integer",
+            "description": "项目状态",
+            "format": "int32"
+          },
+          "jie": {
+            "type": "string",
+            "description": "检查结果"
+          },
+          "ctime": {
+            "type": "string",
+            "description": "收费时间"
+          },
+          "mstate": {
+            "type": "integer",
+            "description": "药品状态",
+            "format": "int32"
+          }
+        },
+        "description": "项目收费明细实体"
+      },
+      "Prescription": {
+        "type": "object",
+        "properties": {
+          "cashier": {
+            "type": "integer",
+            "description": "处方ID",
+            "format": "int32"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "drugName": {
+            "type": "string",
+            "description": "药品名称"
+          },
+          "drugNum": {
+            "type": "integer",
+            "description": "药品数量",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "description": "小计",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "ostate": {
+            "type": "integer",
+            "description": "项目状态",
+            "format": "int32"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "mstate": {
+            "type": "integer",
+            "description": "药品状态",
+            "format": "int32"
+          }
+        },
+        "description": "处方明细实体"
+      },
+      "ResultUser": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userid": {
+                "type": "integer",
+                "description": "用户ID",
+                "format": "int32"
+              },
+              "loginname": {
+                "type": "string",
+                "description": "登录名"
+              },
+              "identity": {
+                "type": "string",
+                "description": "身份证号"
+              },
+              "realname": {
+                "type": "string",
+                "description": "真实姓名"
+              },
+              "sex": {
+                "type": "integer",
+                "description": "性别",
+                "format": "int32"
+              },
+              "address": {
+                "type": "string",
+                "description": "地址"
+              },
+              "phone": {
+                "type": "string",
+                "description": "电话"
+              },
+              "pwd": {
+                "type": "string",
+                "description": "密码"
+              },
+              "position": {
+                "type": "string",
+                "description": "职位"
+              },
+              "type": {
+                "type": "integer",
+                "description": "类型",
+                "format": "int32"
+              },
+              "available": {
+                "type": "integer",
+                "description": "可用状态",
+                "format": "int32"
+              },
+              "salt": {
+                "type": "string",
+                "description": "加盐"
+              }
+            },
+            "description": "用户实体"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "integer",
+            "description": "用户ID",
+            "format": "int32"
+          },
+          "loginname": {
+            "type": "string",
+            "description": "登录名"
+          },
+          "identity": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "realname": {
+            "type": "string",
+            "description": "真实姓名"
+          },
+          "sex": {
+            "type": "integer",
+            "description": "性别",
+            "format": "int32"
+          },
+          "address": {
+            "type": "string",
+            "description": "地址"
+          },
+          "phone": {
+            "type": "string",
+            "description": "电话"
+          },
+          "pwd": {
+            "type": "string",
+            "description": "密码"
+          },
+          "position": {
+            "type": "string",
+            "description": "职位"
+          },
+          "type": {
+            "type": "integer",
+            "description": "类型",
+            "format": "int32"
+          },
+          "available": {
+            "type": "integer",
+            "description": "可用状态",
+            "format": "int32"
+          },
+          "salt": {
+            "type": "string",
+            "description": "加盐"
+          }
+        },
+        "description": "用户实体"
+      },
+      "Register": {
+        "type": "object",
+        "properties": {
+          "registerId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "userName": {
+            "type": "string",
+            "description": "患者姓名"
+          },
+          "age": {
+            "type": "integer",
+            "description": "年龄",
+            "format": "int32"
+          },
+          "sex": {
+            "type": "string",
+            "description": "性别"
+          },
+          "diagnose": {
+            "type": "string",
+            "description": "诊断"
+          },
+          "address": {
+            "type": "string",
+            "description": "地址"
+          },
+          "phone": {
+            "type": "string",
+            "description": "电话"
+          },
+          "idcard": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "registerDate": {
+            "type": "string",
+            "description": "挂号日期",
+            "format": "date-time"
+          },
+          "operator": {
+            "type": "string",
+            "description": "操作员"
+          },
+          "money": {
+            "type": "number",
+            "description": "金额",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "departmentId": {
+            "type": "integer",
+            "description": "科室ID",
+            "format": "int32"
+          },
+          "doctorId": {
+            "type": "integer",
+            "description": "医生ID",
+            "format": "int32"
+          },
+          "bedId": {
+            "type": "integer",
+            "description": "床位ID",
+            "format": "int32"
+          },
+          "department": {
+            "type": "string",
+            "description": "科室名称"
+          },
+          "doctorName": {
+            "type": "string",
+            "description": "医生姓名"
+          },
+          "bedName": {
+            "type": "string",
+            "description": "床位名称"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "出院日期",
+            "format": "date-time"
+          },
+          "price": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "prices": {
+            "type": "number",
+            "description": "总价",
+            "format": "double"
+          },
+          "discount": {
+            "type": "string",
+            "description": "折扣"
+          },
+          "zhuan": {
+            "type": "string",
+            "description": "转院时间",
+            "format": "date-time"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "关联reportId",
+            "format": "int32"
+          },
+          "day": {
+            "type": "integer",
+            "description": "天数",
+            "format": "int32"
+          }
+        },
+        "description": "挂号信息实体"
+      },
+      "ProjectPayment": {
+        "type": "object",
+        "properties": {
+          "cashier": {
+            "type": "integer",
+            "description": "收费ID",
+            "format": "int32"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "durgname": {
+            "type": "string",
+            "description": "项目名称"
+          },
+          "durgnum": {
+            "type": "integer",
+            "description": "项目数量",
+            "format": "int32"
+          },
+          "repiceprice": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "repicetotal": {
+            "type": "number",
+            "description": "小计",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "ostate": {
+            "type": "integer",
+            "description": "项目状态",
+            "format": "int32"
+          },
+          "jie": {
+            "type": "string",
+            "description": "检查结果"
+          },
+          "ctime": {
+            "type": "string",
+            "description": "收费时间"
+          },
+          "mstate": {
+            "type": "integer",
+            "description": "药品状态",
+            "format": "int32"
+          }
+        },
+        "description": "项目缴费明细实体"
+      },
+      "ResultListProjectPayment": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cashier": {
+                  "type": "integer",
+                  "description": "收费ID",
+                  "format": "int32"
+                },
+                "reportId": {
+                  "type": "integer",
+                  "description": "挂号ID",
+                  "format": "int32"
+                },
+                "durgname": {
+                  "type": "string",
+                  "description": "项目名称"
+                },
+                "durgnum": {
+                  "type": "integer",
+                  "description": "项目数量",
+                  "format": "int32"
+                },
+                "repiceprice": {
+                  "type": "number",
+                  "description": "单价",
+                  "format": "double"
+                },
+                "repicetotal": {
+                  "type": "number",
+                  "description": "小计",
+                  "format": "double"
+                },
+                "state": {
+                  "type": "integer",
+                  "description": "状态",
+                  "format": "int32"
+                },
+                "ostate": {
+                  "type": "integer",
+                  "description": "项目状态",
+                  "format": "int32"
+                },
+                "jie": {
+                  "type": "string",
+                  "description": "检查结果"
+                },
+                "ctime": {
+                  "type": "string",
+                  "description": "收费时间"
+                },
+                "mstate": {
+                  "type": "integer",
+                  "description": "药品状态",
+                  "format": "int32"
+                }
+              },
+              "description": "项目缴费明细实体"
+            }
+          }
+        }
+      },
+      "ResultListProjectCheck": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cashier": {
+                  "type": "integer",
+                  "description": "收费ID",
+                  "format": "int32"
+                },
+                "reportId": {
+                  "type": "integer",
+                  "description": "挂号ID",
+                  "format": "int32"
+                },
+                "durgname": {
+                  "type": "string",
+                  "description": "项目名称"
+                },
+                "durgnum": {
+                  "type": "integer",
+                  "description": "项目数量",
+                  "format": "int32"
+                },
+                "repiceprice": {
+                  "type": "number",
+                  "description": "单价",
+                  "format": "double"
+                },
+                "repicetotal": {
+                  "type": "number",
+                  "description": "小计",
+                  "format": "double"
+                },
+                "state": {
+                  "type": "integer",
+                  "description": "状态",
+                  "format": "int32"
+                },
+                "ostate": {
+                  "type": "integer",
+                  "description": "项目状态",
+                  "format": "int32"
+                },
+                "jie": {
+                  "type": "string",
+                  "description": "检查结果"
+                },
+                "ctime": {
+                  "type": "string",
+                  "description": "收费时间"
+                },
+                "mstate": {
+                  "type": "integer",
+                  "description": "药品状态",
+                  "format": "int32"
+                }
+              },
+              "description": "项目检查明细实体"
+            }
+          }
+        }
+      },
+      "ResultListProjectCharge": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cashier": {
+                  "type": "integer",
+                  "description": "收费ID",
+                  "format": "int32"
+                },
+                "reportId": {
+                  "type": "integer",
+                  "description": "挂号ID",
+                  "format": "int32"
+                },
+                "durgname": {
+                  "type": "string",
+                  "description": "项目名称"
+                },
+                "durgnum": {
+                  "type": "integer",
+                  "description": "项目数量",
+                  "format": "int32"
+                },
+                "repiceprice": {
+                  "type": "number",
+                  "description": "单价",
+                  "format": "double"
+                },
+                "repicetotal": {
+                  "type": "number",
+                  "description": "小计",
+                  "format": "double"
+                },
+                "state": {
+                  "type": "integer",
+                  "description": "状态",
+                  "format": "int32"
+                },
+                "ostate": {
+                  "type": "integer",
+                  "description": "项目状态",
+                  "format": "int32"
+                },
+                "jie": {
+                  "type": "string",
+                  "description": "检查结果"
+                },
+                "ctime": {
+                  "type": "string",
+                  "description": "收费时间"
+                },
+                "mstate": {
+                  "type": "integer",
+                  "description": "药品状态",
+                  "format": "int32"
+                }
+              },
+              "description": "项目收费明细实体"
+            }
+          }
+        }
+      },
+      "OutpatientRecord": {
+        "type": "object",
+        "properties": {
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "reportName": {
+            "type": "string",
+            "description": "患者姓名"
+          },
+          "sex": {
+            "type": "string",
+            "description": "性别"
+          },
+          "age": {
+            "type": "integer",
+            "description": "年龄",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "description": "价格",
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "description": "就诊时间",
+            "format": "date-time"
+          },
+          "users": {
+            "type": "string",
+            "description": "操作员"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "departmentId": {
+            "type": "integer",
+            "description": "科室ID",
+            "format": "int32"
+          },
+          "doctorId": {
+            "type": "integer",
+            "description": "医生ID",
+            "format": "int32"
+          },
+          "registeredTypeId": {
+            "type": "integer",
+            "description": "挂号类型ID",
+            "format": "int32"
+          },
+          "department": {
+            "type": "string",
+            "description": "科室名称"
+          },
+          "doctorName": {
+            "type": "string",
+            "description": "医生姓名"
+          },
+          "type": {
+            "type": "string",
+            "description": "挂号类型"
+          },
+          "carId": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "phone": {
+            "type": "string",
+            "description": "电话"
+          },
+          "transferInfo": {
+            "type": "string",
+            "description": "转诊信息"
+          }
+        },
+        "description": "门诊患者记录"
+      },
+      "ResultListOutpatientRecord": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reportId": {
+                  "type": "integer",
+                  "description": "挂号ID",
+                  "format": "int32"
+                },
+                "reportName": {
+                  "type": "string",
+                  "description": "患者姓名"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "性别"
+                },
+                "age": {
+                  "type": "integer",
+                  "description": "年龄",
+                  "format": "int32"
+                },
+                "price": {
+                  "type": "number",
+                  "description": "价格",
+                  "format": "double"
+                },
+                "time": {
+                  "type": "string",
+                  "description": "就诊时间",
+                  "format": "date-time"
+                },
+                "users": {
+                  "type": "string",
+                  "description": "操作员"
+                },
+                "state": {
+                  "type": "integer",
+                  "description": "状态",
+                  "format": "int32"
+                },
+                "departmentId": {
+                  "type": "integer",
+                  "description": "科室ID",
+                  "format": "int32"
+                },
+                "doctorId": {
+                  "type": "integer",
+                  "description": "医生ID",
+                  "format": "int32"
+                },
+                "registeredTypeId": {
+                  "type": "integer",
+                  "description": "挂号类型ID",
+                  "format": "int32"
+                },
+                "department": {
+                  "type": "string",
+                  "description": "科室名称"
+                },
+                "doctorName": {
+                  "type": "string",
+                  "description": "医生姓名"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "挂号类型"
+                },
+                "carId": {
+                  "type": "string",
+                  "description": "身份证号"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "电话"
+                },
+                "transferInfo": {
+                  "type": "string",
+                  "description": "转诊信息"
+                }
+              },
+              "description": "门诊患者记录"
+            }
+          }
+        }
+      },
+      "ResultOutpatientRecord": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "reportId": {
+                "type": "integer",
+                "description": "挂号ID",
+                "format": "int32"
+              },
+              "reportName": {
+                "type": "string",
+                "description": "患者姓名"
+              },
+              "sex": {
+                "type": "string",
+                "description": "性别"
+              },
+              "age": {
+                "type": "integer",
+                "description": "年龄",
+                "format": "int32"
+              },
+              "price": {
+                "type": "number",
+                "description": "价格",
+                "format": "double"
+              },
+              "time": {
+                "type": "string",
+                "description": "就诊时间",
+                "format": "date-time"
+              },
+              "users": {
+                "type": "string",
+                "description": "操作员"
+              },
+              "state": {
+                "type": "integer",
+                "description": "状态",
+                "format": "int32"
+              },
+              "departmentId": {
+                "type": "integer",
+                "description": "科室ID",
+                "format": "int32"
+              },
+              "doctorId": {
+                "type": "integer",
+                "description": "医生ID",
+                "format": "int32"
+              },
+              "registeredTypeId": {
+                "type": "integer",
+                "description": "挂号类型ID",
+                "format": "int32"
+              },
+              "department": {
+                "type": "string",
+                "description": "科室名称"
+              },
+              "doctorName": {
+                "type": "string",
+                "description": "医生姓名"
+              },
+              "type": {
+                "type": "string",
+                "description": "挂号类型"
+              },
+              "carId": {
+                "type": "string",
+                "description": "身份证号"
+              },
+              "phone": {
+                "type": "string",
+                "description": "电话"
+              },
+              "transferInfo": {
+                "type": "string",
+                "description": "转诊信息"
+              }
+            },
+            "description": "门诊患者记录"
+          }
+        }
+      },
+      "DrugCharge": {
+        "type": "object",
+        "properties": {
+          "cashier": {
+            "type": "integer",
+            "description": "收费ID",
+            "format": "int32"
+          },
+          "reportId": {
+            "type": "integer",
+            "description": "挂号ID",
+            "format": "int32"
+          },
+          "durgname": {
+            "type": "string",
+            "description": "药品名称"
+          },
+          "durgnum": {
+            "type": "integer",
+            "description": "药品数量",
+            "format": "int32"
+          },
+          "repiceprice": {
+            "type": "number",
+            "description": "单价",
+            "format": "double"
+          },
+          "repicetotal": {
+            "type": "number",
+            "description": "小计",
+            "format": "double"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态",
+            "format": "int32"
+          },
+          "ostate": {
+            "type": "integer",
+            "description": "项目状态",
+            "format": "int32"
+          },
+          "jie": {
+            "type": "string",
+            "description": "检查结果"
+          },
+          "ctime": {
+            "type": "string",
+            "description": "收费时间"
+          },
+          "mstate": {
+            "type": "integer",
+            "description": "药品缴费状态",
+            "format": "int32"
+          }
+        },
+        "description": "药品缴费明细实体"
+      },
+      "ResultListDrugCharge": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cashier": {
+                  "type": "integer",
+                  "description": "收费ID",
+                  "format": "int32"
+                },
+                "reportId": {
+                  "type": "integer",
+                  "description": "挂号ID",
+                  "format": "int32"
+                },
+                "durgname": {
+                  "type": "string",
+                  "description": "药品名称"
+                },
+                "durgnum": {
+                  "type": "integer",
+                  "description": "药品数量",
+                  "format": "int32"
+                },
+                "repiceprice": {
+                  "type": "number",
+                  "description": "单价",
+                  "format": "double"
+                },
+                "repicetotal": {
+                  "type": "number",
+                  "description": "小计",
+                  "format": "double"
+                },
+                "state": {
+                  "type": "integer",
+                  "description": "状态",
+                  "format": "int32"
+                },
+                "ostate": {
+                  "type": "integer",
+                  "description": "项目状态",
+                  "format": "int32"
+                },
+                "jie": {
+                  "type": "string",
+                  "description": "检查结果"
+                },
+                "ctime": {
+                  "type": "string",
+                  "description": "收费时间"
+                },
+                "mstate": {
+                  "type": "integer",
+                  "description": "药品缴费状态",
+                  "format": "int32"
+                }
+              },
+              "description": "药品缴费明细实体"
+            }
+          }
+        }
+      }
+    }
+  }
+}
